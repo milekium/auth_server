@@ -1,15 +1,14 @@
-mod config;
-mod errors;
-mod handlers;
-mod server;
+extern crate authserver;
 
-use crate::config::Config;
+use authserver::errors::Error;
+use authserver::run;
 
 #[tokio::main]
-async fn main() {
-    let config = Config::from_env().expect("Server configuration can be loaded");
+async fn main() -> Result<(), Error> {
+    // let config = Config::from_env().expect("Server configuration can be loaded");
 
-    let db_pool = config.db_pool().expect("Database Pool can be created");
+    // let db_pool = config.db_pool().expect("Database Pool can be created");
 
-    server::start((config.host, config.port), db_pool).await;
+    // run(config, db_pool).await;
+    run().await
 }

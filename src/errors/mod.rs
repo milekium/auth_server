@@ -8,7 +8,7 @@ use warp::{hyper::StatusCode, Rejection, Reply};
 #[derive(Error, Debug)]
 pub enum Error {
     #[error("error getting connection from DB pool: {0}")]
-    _DBPoolError(mobc::Error<tokio_postgres::Error>),
+    DBPoolError(mobc::Error<tokio_postgres::Error>),
     #[error("error executing DB query: {0}")]
     DBQueryError(#[from] tokio_postgres::Error),
     #[error("error connecting DB: {0}")]

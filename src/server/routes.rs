@@ -19,8 +19,6 @@ pub fn make_routes(db_pool: DBPool) -> BoxedFilter<(impl Reply,)> {
         .and(with_db(db_pool.clone()))
         .and_then(health_handler);
 
-    let assets = warp::path("assets").and(warp::fs::dir("./src"));
-
     let user_agent = warp::path("hello")
         .and(warp::path::param())
         .and(warp::header("user-agent"))
@@ -28,7 +26,6 @@ pub fn make_routes(db_pool: DBPool) -> BoxedFilter<(impl Reply,)> {
 
     health
         .or(user_agent)
-        .or(assets)
         .recover(errors::handle_rejection)
         .boxed()
 }

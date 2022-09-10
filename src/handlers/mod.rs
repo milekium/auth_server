@@ -1,3 +1,5 @@
+mod user;
+
 use crate::config::{Config, DBPool};
 use crate::errors::Error::{DBConnError, DBQueryError};
 
