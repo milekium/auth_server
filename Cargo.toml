@@ -30,9 +30,22 @@ config = "0.10"
 
 #db connection handler
 mobc = "0.7.3"
-mobc-postgres = "0.7.0"
+mobc-postgres = { version= "0.7.0", features = ["with-uuid-0_8"] }
+
+uuid = { version = "0.8", features = [ "v4" , "serde"] }
 
 #Error and debug handlers
 thiserror = "1.0.34"
 tracing = "0.1"
+validator = { version = "0.12", features = ["derive"] }
 
+
+#Authorization tools
+base64 = "0.13.0"
+secrecy = "0.8.0"
+argon2 = "0.4"
+rand_core = { version = "0.6", features = ["std"] }
+
+#Token tools
+chrono = "0.4.22"
+jsonwebtoken = "8.1.1"

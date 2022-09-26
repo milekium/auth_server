@@ -1,11 +1,8 @@
-use std::time::Duration;
-
-use authserver::run;
-use tokio::time::sleep;
+mod common;
 
 #[tokio::test]
 async fn health_check_works() {
-    spawn_app().await;
+    common::spawn_app().await;
 
     let client = reqwest::Client::new();
 
@@ -29,18 +26,10 @@ async fn headers_check_works() {
         .get("http://127.0.0.1:3000/hello/sean")
         .send()
         .await
-        .expect("df")
+        .expect("request not pass")
         .text()
         .await
         .unwrap();
 
     assert_eq!("Hello sean, whose agent is reqwest/v0.8.6", json);
-}
-
-// Launch our application in the background ~somehow~
-async fn spawn_app() {
-    let server = run();
-    let _ = tokio::task::spawn(server);
-    sleep(Duration::from_millis(100)).await;
-    println!("100 ms have elapsed");
 }

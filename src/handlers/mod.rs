@@ -1,4 +1,5 @@
-mod user;
+pub(crate) mod auth;
+pub(crate) mod user;
 
 use crate::config::{Config, DBPool};
 use crate::errors::Error::{DBConnError, DBQueryError};
